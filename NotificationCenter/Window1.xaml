@@ -1,0 +1,155 @@
+﻿<Window x:Class="NotificationCenter.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NotificationCenter"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="Метод дихотомии" WindowState="Maximized">
+    <Window.Resources>
+        <local:ThicknessMultiplyingConverter x:Key="TMult"/>
+    </Window.Resources>
+
+    <Grid Name="grid">
+        <Grid Background="DimGray" Name="LeftGrid">
+            <Rectangle Height="49" VerticalAlignment="Top" Fill="DarkBlue"></Rectangle>
+            <Label Content="Выберите:" Foreground="White" Margin="50,0,0,0" FontSize="24" FontWeight="Bold"></Label>
+            <Button Name="urav" FontWeight="Bold" FontSize="18" Content="Метод дихотомии" Height="100" Margin="5,60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click_21" />
+        </Grid>
+        <Grid Margin="0,0,50,0" Height="0" Name="OffsetBottomGrid"/>
+
+        <Grid Name="MeasureGrid" Height="0" Width="0" SizeChanged="Grid_SizeChanged">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Style.Triggers>
+                        <Trigger Property="Tag">
+                            <Trigger.Value>
+                                <sys:Boolean>False</sys:Boolean>
+                            </Trigger.Value>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Width" To="0.25" Duration="0:0:0:0.8">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuarticEase EasingMode="EaseIn"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Width" To="0" Duration="0:0:0:0.4">
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+        </Grid>
+
+        <Grid Background="#417f8e" SizeChanged="Grid_SizeChanged" Width="{Binding ActualWidth, ElementName=LeftGrid}" Visibility="Visible" Name="Main">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="200*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Background="Black" Visibility="Collapsed" Name="Polosa"></Grid>
+            <ScrollViewer Grid.Column="1">
+            <StackPanel>
+                <Grid Name="osnova" Height="{Binding ActualHeight, ElementName=Main}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Column="1" Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Border BorderBrush="Black" BorderThickness="2" Grid.ColumnSpan="6">
+                        <TextBox TextAlignment="Left" Name="Input" FontSize="18" Padding="10,0,0,0" Grid.ColumnSpan="6" FontWeight="Bold" VerticalContentAlignment="Center"/>
+                    </Border>
+                    <Button Margin="5" Style="{StaticResource normal}" Content="9" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click" FontWeight="Bold"/>
+                    <Button Margin="5" Style="{StaticResource normal}" Content="8" Grid.Column="2" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_1" FontWeight="Bold"/>
+                    <Button Margin="5" Style="{StaticResource normal}" Content="7" Grid.Column="3" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_2" FontWeight="Bold"/>
+                    <Button Margin="5" Style="{StaticResource normal}" Content="6" Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_3" FontWeight="Bold"/>
+                    <Button Margin="5" Style="{StaticResource normal}" Content="5" Grid.Column="2" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_4" FontWeight="Bold"/>
+                    <Button Margin="5" Style="{StaticResource normal}" Content="4" Grid.Column="3" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_5" FontWeight="Bold"/>
+                    <Button Margin="5" Style="{StaticResource normal}" Content="3" Grid.Column="1" Grid.Row="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_6" FontWeight="Bold"/>
+                    <Button Margin="5" Style="{StaticResource normal}" Content="2" Grid.Column="2" Grid.Row="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_7" FontWeight="Bold"/>
+                    <Button Margin="5" Style="{StaticResource normal}" Content="1" Grid.Column="3" Grid.Row="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_8" FontWeight="Bold"/>
+                    <Button Margin="5" Style="{StaticResource normal}" Content="0" Grid.Column="1" Grid.Row="4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_9" FontWeight="Bold"/>
+                    <Button Margin="5" Style="{StaticResource normal}" Content="." Grid.Column="2" Grid.Row="4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_10" FontWeight="Bold"/>
+                    <Button Margin="5" Style="{StaticResource normal}" Content="=" Grid.Column="3" Grid.Row="4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_11" FontWeight="Bold"/>
+                    <Button Margin="5" Style="{StaticResource normal}" Content="/" Grid.Column="4" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_12" FontWeight="Bold"/>
+                    <Button Margin="5" Style="{StaticResource normal}" Content="*" Grid.Column="4" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_13" FontWeight="Bold"/>
+                    <Button Margin="5" Style="{StaticResource normal}" Content="-" Grid.Column="4" Grid.Row="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_14" FontWeight="Bold"/>
+                    <Button Margin="5" Style="{StaticResource normal}" Content="+" Grid.Column="4" Grid.Row="4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_15" FontWeight="Bold"/>
+                    <Button Margin="5" Style="{StaticResource normal}" Content="del" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_16" FontWeight="Bold"/>
+                    <Button Margin="5" Style="{StaticResource normal}" Content="Enter" Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_18" FontWeight="Bold"/>
+                    <Button Margin="5" Style="{StaticResource normal}" Content="x" Grid.Column="0" Grid.Row="4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_17" FontWeight="Bold"/>
+                     <Button Margin="5" Style="{StaticResource normal}" Content="(" Grid.Column="5" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_19" FontWeight="Bold" IsEnabled="False"/>
+                    <Button Margin="5" Style="{StaticResource normal}" Content=")" Grid.Column="5" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_20" FontWeight="Bold" IsEnabled="False"/>
+                    <Button Margin="5" Style="{StaticResource normal}" Content="√" Grid.Column="5" Grid.Row="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_23" FontWeight="Bold"/>
+                    <Button Margin="5" Style="{StaticResource normal}" Content="^" Grid.Column="5" Grid.Row="4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click_24" FontWeight="Bold"/>
+                </Grid>
+                <Label Name="Output" Foreground="Red" Grid.Column="1" Grid.Row="2" FontSize="24" HorizontalContentAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+            </Grid>
+                <Grid Grid.Column="1" Background="White">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <Label FontWeight="Bold" HorizontalAlignment="Center" Content="ИНСТРУКЦИЯ" FontSize="20"></Label>
+                        <Label FontWeight="Bold" HorizontalAlignment="Center" Content="1)Введите изначальное уравнение" FontSize="16" Grid.Row="3"></Label>
+                        <Label FontWeight="Bold" HorizontalAlignment="Center" Content="В уравнении не должно быть нераскрытых скобок и значений после =" FontSize="16" Grid.Row="5"></Label>
+                        <Label FontWeight="Bold" HorizontalAlignment="Center" Content="ВАЖНО! Опускать знаки умножения нельзя, возможность добавления скобок временно недоступна, корень только для констант" FontSize="16" Grid.Row="7"></Label>
+                        <Label FontWeight="Bold" HorizontalAlignment="Center" Content="2)Нажмите на кнопку Enter" FontSize="16" Grid.Row="9"></Label>
+                        <Label FontWeight="Bold" HorizontalAlignment="Center" Content="3)Результат выведится пд клавиатурой" FontSize="16" Grid.Row="11"></Label>
+                        <Label FontWeight="Bold" HorizontalAlignment="Center" Content="УДАЧИ!" FontSize="16" Grid.Row="13"></Label>
+                    </Grid>
+            </StackPanel>
+            </ScrollViewer>
+            <Grid.Margin>
+                <MultiBinding Converter="{StaticResource TMult}">
+                    <Binding Path="ActualWidth" ElementName="OffsetBottomGrid"/>
+                    <Binding Path="ActualWidth" ElementName="MeasureGrid"/>
+                </MultiBinding>
+            </Grid.Margin>
+        </Grid>
+        <ToggleButton Style="{StaticResource left}" Click="Button_Click_22" IsChecked="{Binding Tag, ElementName=MeasureGrid}" Width="50" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Content="≡" FontSize="24" FontWeight="Bold" FontFamily="Times New Roman" />
+    </Grid>
+</Window>
